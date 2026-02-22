@@ -1,0 +1,41 @@
+﻿{
+	"manifest_version": 2,
+	"name": "干部网络学院高效学习助手",
+	"version": "2.0",
+	"description": "打开所有想要学习的课程页面并关闭其他页面即可自动挂机。支持“广州市干部培训网络学院”和“应急管理干部网络学院”两个培训网站。",
+	"icons": {
+		"100": "imgs/icon.png"
+	},
+	"browser_action": {
+		"default_icon": "imgs/icon.png",
+		"default_title": "干部网络学院高效学习助手"
+	},
+  	"permissions": [
+    		"tabs", "http://*/*", "https://*/*"
+  	],
+	"content_scripts": [
+		{
+			"matches": [
+				"https://gzgbjy.gzswdx.gov.cn/*",
+				"https://yjgb.sset.org.cn/*"
+			],
+			"js": [
+				"scripts/utils.js",
+				"scripts/disable_beforeunload_prompt.js"
+			], 
+			"run_at": "document_start"
+		},
+		{
+			"matches": [
+				"https://gzgbjy.gzswdx.gov.cn/*"
+			],
+			"js": ["scripts/gzgbjy.gzswdx.gov.cn.js"]
+		},
+		{
+			"matches": [
+				"https://yjgb.sset.org.cn/*"
+			],
+			"js": ["scripts/yjgb.sset.org.cn.js"]
+		}
+	]		
+}
